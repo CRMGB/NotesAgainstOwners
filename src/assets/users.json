@@ -1,0 +1,18 @@
+{
+    "Users": [
+        {
+            "id": 1,
+            "username": "userDefault",
+            "firstName": "User",
+            "lastName": "Default",
+            "password": "1234567890"
+        },
+        {
+            "id": 2,
+            "username": "userDefault2",
+            "firstName": "User",
+            "lastName": "Default 2",
+            "password": "1234567890"
+        }
+    ]
+}
