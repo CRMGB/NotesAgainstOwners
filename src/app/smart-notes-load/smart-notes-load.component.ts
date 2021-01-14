@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '@app/_services';
-import { NotesService } from '@app/_services/notes.service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { first, switchMap, tap } from 'rxjs/operators';
+import { AllNotesService } from '@app/_services/all-notes.service';
+import { first } from 'rxjs/operators';
 import { Notes } from '../_models/notesModel'
 import { User } from '../_models/user'
+
 @Component({
   selector: 'app-smart-notes-load',
   templateUrl: './smart-notes-load.component.html',
@@ -12,35 +13,55 @@ import { User } from '../_models/user'
 })
 export class SmartNotesLoadComponent implements OnInit{
   @Input() notesModel: Notes[];
-  counter = 0;
-  
+  @Input() userModel: User[];
+  users: User[];
+  validationForm: FormGroup;
+  submitted = false;
   // loading: Observable<boolean>;
   // notes: Observable<Notes>;
+  
   constructor(
-    private notesDetailService: NotesService
-  ) {
+    private userService: UserService,
+    private notesDetailService: AllNotesService,
+    public fb: FormBuilder
+    ) { 
+    this.validationForm = fb.group({
+        titleFormEx: [null, [Validators.required, Validators.email]],
+        passwordFormEx: [null, Validators.required],
+        });
     // this.loading = this.notesDetailService.loading;
     // this.notes = this.notesDetailService.notes;
   }
-  ngOnInit(){
-    console.log("from samrt-notes-load ", this.notesModel)
+  get titleFormEx() { 
+    return this.validationForm.get('titleFormEx'); 
+  }
+  get passwordFormEx() { 
+      return this.validationForm.get('passwordFormEx'); 
+  }
 
+  ngOnInit(){
+    // this.loading = true;
+    console.log("from samrt-notes-load ", this.notesModel)
+    this.userService.getAll().pipe(first()).subscribe(users => {
+      // this.loading = false;
+    this.users = users;
+    });
+}
+
+  onSubmit() {
+    this.submitted = true;
+    // this.submit.emit();
+    if (this.validationForm.invalid) {
+      return;
+    }
+    this.titleFormEx;
+    this.passwordFormEx;
+    console.log("title", this.titleFormEx.value);
+    // this.notesService.save(this.titleFormEx.value)
   }
 
   // onSave(notes: Notes) {
   //   this.notesDetailService.save(notes);
-  // }
-
-  // loadNotes(){
-
-  // }
-
-  // onSubmit() {
-  //   this.notes = this.notesDetailService.getNotesData();
-  //   for (var note in this.notes){
-  //     console.log("saved Notes!", note)
-  //   }
-  //   console.log("hellooooo", this.notes)
   // }
 
 }

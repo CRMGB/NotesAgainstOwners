@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
+import { DumbComponent } from './dumb-component';
 import { LoginComponent } from './login';;
 import { SmartNotesLoadComponent } from './smart-notes-load/smart-notes-load.component'
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -25,7 +25,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     ],
     declarations: [
         AppComponent,
-        HomeComponent,
+        DumbComponent,
         LoginComponent,
         SmartNotesLoadComponent   
     ],
