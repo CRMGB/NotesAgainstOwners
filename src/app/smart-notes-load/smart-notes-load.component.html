@@ -1,1 +1,73 @@
-<p>smart-notes-load works!</p>
+<!-- <div class="card mt-4">
+    <h4 *ngFor="let user of users" class="card-header">You're logged as {{user.firstName}} {{user.lastName}}</h4>
+</div>
+<form [formGroup]="validationForm">
+    <div class="md-form">
+      <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
+      <input mdbInput mdbValidate formControlName="titleFormEx" minLength="8" maxLength="25" type="email"
+             class="form-control" id="form9">
+      <label for="form9">Title</label>
+      <mdb-error *ngIf="titleFormEx.invalid && (titleFormEx.dirty || titleFormEx.touched)">Input invalid</mdb-error>
+      <mdb-success *ngIf="titleFormEx.valid && (titleFormEx.dirty || titleFormEx.touched)">Input valid</mdb-success>
+    </div>
+  
+    <div class="md-form">
+      <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+      <input mdbInput mdbValidate formControlName="passwordFormEx" minLength="10" maxLength="25" type="password"
+             class="form-control" id="form10">
+      <label for="form10">body</label>
+      <mdb-error *ngIf="passwordFormEx.invalid && (passwordFormEx.dirty || passwordFormEx.touched)">Input invalid
+      </mdb-error>
+      <mdb-success *ngIf="passwordFormEx.valid && (passwordFormEx.dirty || passwordFormEx.touched)">Input valid
+      </mdb-success>
+    </div>
+    <div class="md-form">
+        <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+        <input mdbInput mdbValidate formControlName="passwordFormEx" minLength="10" maxLength="25" type="password"
+               class="form-control" id="form10" value="title">
+        <label for="form10">media</label>
+        <mdb-error *ngIf="passwordFormEx.invalid && (passwordFormEx.dirty || passwordFormEx.touched)">Input invalid
+        </mdb-error>
+        <mdb-success *ngIf="passwordFormEx.valid && (passwordFormEx.dirty || passwordFormEx.touched)">Input valid
+        </mdb-success>
+      </div>
+      <div class="md-form">
+        <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+        <input mdbInput mdbValidate formControlName="passwordFormEx" minLength="10" maxLength="25" type="password"
+               class="form-control" id="form10">
+        <label for="form10">status</label>
+        <mdb-error *ngIf="passwordFormEx.invalid && (passwordFormEx.dirty || passwordFormEx.touched)">Input invalid
+        </mdb-error>
+        <mdb-success *ngIf="passwordFormEx.valid && (passwordFormEx.dirty || passwordFormEx.touched)">Input valid
+        </mdb-success>
+      </div>
+    <button type="button" (click)="onSubmit()" class="btn btn-primary">Save</button>
+    <p>Hello</p>
+    <br/><br/>
+  </form> -->
+
+
+
+<table class="table table-striped" style="border:1px solid black">
+    <thead>
+        <tr>
+          <th>title</th>
+          <th>body</th>
+          <th> media </th>
+          <th> status </th>
+        </tr>
+      </thead>
+  <tbody>
+    <tr  *ngFor="let note of notesModel">
+      <td> {{note.title}} </td>
+      <td> {{note.body}} </td>
+      <td> {{note.media}} </td>
+      <td> {{note.status}} </td>
+      <!-- <td> 
+          <button type="button" *ngIf="showAddBUtton" class="btn btn-primary" (click)="addToCart(products);showToastr(products,'  is added to the cart')" > Add </button>
+          <button type="button" *ngIf="showDeleteButton" class="btn btn-primary" (click)="deleteFromCart(products);showToastr(products,' is deleted from the cart')" > Delete </button>
+
+      </td> -->
+    </tr>
+  </tbody>
+</table>

@@ -13,20 +13,22 @@ import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';;
 import { SmartNotesLoadComponent } from './smart-notes-load/smart-notes-load.component'
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        MDBBootstrapModule.forRoot()
     ],
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent
-,
-        SmartNotesLoadComponent    ],
+        LoginComponent,
+        SmartNotesLoadComponent   
+    ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

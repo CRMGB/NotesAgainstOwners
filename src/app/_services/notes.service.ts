@@ -1,58 +1,55 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, BehaviorSubject, timer, of } from 'rxjs';
-import { switchMap, tap, delay } from 'rxjs/operators';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
-import { Notes } from '../_models/notes';
+import { Notes } from '../_models/notesModel';
 
 @Injectable({ providedIn: 'root' })
 export class NotesService {
 
-  loading: Observable<boolean>;
-
-  notes: Observable<Notes>;
-
-  private needNewNotesData = new BehaviorSubject<void>(null);
+  // loading: Observable<boolean>;
+  // notes: Observable<Notes>;
 
   private databaseNotes: Notes;
+  defaultBehaviourValue = [
+    { 
+    'id': 1 , 
+    'title': 'Some Title', 
+    'body': 'Some Body', 
+    'media': 'Some media',
+    'status': 'SomeStatus',
+    'created': "20/01/2021",
+    'edited': "20/01/2021",
+    'deleted': "20/01/2021",
+    'owner': "Some"
+  }];
 
-  constructor() {
-    this.databaseNotes = new Notes();
-    this.databaseNotes.id
-    this.databaseNotes.title
-    this.databaseNotes.body
-    this.databaseNotes.media
-    this.databaseNotes.status
-    this.databaseNotes.created
-    this.databaseNotes.edited
-    this.databaseNotes.deleted
-    this.databaseNotes.owner
+  private notes = new BehaviorSubject<Notes[]>( this.defaultBehaviourValue );
+  product = this.notes.asObservable();
 
-    const loadingSubj = new BehaviorSubject<boolean>(true);
-    this.loading = loadingSubj.asObservable();
+  notesArray: any = [];
+  constructor() { }
 
-    this.notes = this.needNewNotesData.pipe(
-      switchMap(() => {
-        return this.getNotesData();
-      }),
-      tap(() => loadingSubj.next(false))
-    );
+ getnotes(newNote) {
+   console.log('Create a new note: ', newNote);
+   this.notesArray.push(newNote);
+   this.notes.next(this.notesArray);
   }
 
-  getNotesData() {
-    // get the tenant from the "database"
-    return of(this.databaseNotes).pipe(delay(1000)); // delay to simulate asynchronicity
+  removeFromCart(idToRemove: number){
+    this.notesArray = this.notesArray.filter( item => item.id !== idToRemove );
+    this.notes.next(this.notesArray);
   }
 
-  save(notes: Notes) {
-    setTimeout(() => {
-      // setTimeout to simulate asynchronicity
+  // save(notes: Notes) {
+  //   setTimeout(() => {
+  //     this.databaseNotes = notes;
 
-      // save to the "database"
-      this.databaseNotes = notes;
-
-      alert("saved!");
-
-      this.needNewNotesData.next(null);
-    }, 500);
-  }
+  //     alert("saved Notes!");
+  //     console.log("saved Notes!", notes)
+  //     for (var note in this.databaseNotes){
+  //       console.log("saved Notes!", note)
+  //     }
+  //     this.needNewNotesData.next(null);
+  //   }, 500);
+  // }
 }
