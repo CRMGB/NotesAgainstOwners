@@ -21,7 +21,7 @@ export class AllNotesService {
         created: '20/01/2021',
         edited: '20/01/2021',
         deleted: '20/01/2021',
-        owner: 'Test user1',
+        owner: 'userTest1',
       },
       {
         id: 2,
@@ -32,7 +32,7 @@ export class AllNotesService {
         created: '20/01/2021',
         edited: '20/01/2021',
         deleted: '20/01/2021',
-        owner: 'Test user2',
+        owner: 'userTest1',
       },
       {
         id: 3,
@@ -43,7 +43,7 @@ export class AllNotesService {
         created: '20/01/2021',
         edited: '20/01/2021',
         deleted: '20/01/2021',
-        owner: 'Test user3',
+        owner: 'userTest2',
       },
     ];
   }

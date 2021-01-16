@@ -29,7 +29,7 @@ export class NotesService {
   notesArray: any = [];
   constructor() { }
 
- getnotes(newNote) {
+ getNotes(newNote) {
    console.log('Create a new note: ', newNote);
    this.notesArray.push(newNote);
    this.notes.next(this.notesArray);

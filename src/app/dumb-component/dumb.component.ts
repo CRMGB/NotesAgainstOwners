@@ -1,29 +1,22 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { AllNotesService } from '@app/_services/all-notes.service';
+﻿import { Component, Input, OnInit } from '@angular/core';
 import { Notes } from '@app/_models/notesModel';
-import { FormGroup,  } from '@angular/forms';
-import { User } from '@app/_models';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'dumb-component',
-    templateUrl: './dumb.component.html',
-    //styleUrls: ['./home.component.css']
+  selector: 'dumb-component',
+  templateUrl: './dumb.component.html',
+  styleUrls: ['./dumb.component.css']
 })
 export class DumbComponent implements OnInit {
-    notesModel: Notes[];
-    userModel: User[];
-    validationForm: FormGroup;
-    loading = false;
-    users: User[];
-    constructor(private notesDetailService: AllNotesService) { }
+  @Input() notesInput: Notes[];
+  @Input('userInput') userOwner: string; // tslint:disable-line: no-input-rename
+  @Input('formGroup') formGroup: FormGroup; // tslint:disable-line: no-input-rename
 
-    ngOnInit() {
-        const notes = this.notesDetailService.getNotes()
-        this.loadAllData(notes)
-    }
+  constructor() {
+  }
 
-    loadAllData(allNotes) {
-        this.notesModel = allNotes;
-    }
+  ngOnInit() {
+
+  }
 
 }

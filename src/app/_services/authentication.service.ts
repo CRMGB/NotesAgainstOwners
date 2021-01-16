@@ -41,4 +41,8 @@ export class AuthenticationService {
         this.userSubject.next(null);
         this.router.navigate(['/login']);
     }
+
+    getUserSignedIn() {
+        return this.userSubject.value;
+    }
 }
