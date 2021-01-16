@@ -35,7 +35,7 @@ export class NotesService {
    this.notes.next(this.notesArray);
   }
 
-  removeFromCart(idToRemove: number){
+  removeNote(idToRemove: number){
     this.notesArray = this.notesArray.filter( item => item.id !== idToRemove );
     this.notes.next(this.notesArray);
   }

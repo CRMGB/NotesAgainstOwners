@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '@app/_services';
 import { AllNotesService } from '@app/_services/all-notes.service';
 import { first } from 'rxjs/operators';
@@ -16,6 +16,7 @@ export class SmartNotesLoadComponent implements OnInit{
   @Input() userModel: User[];
   users: User[];
   validationForm: FormGroup;
+  dynamicForm : FormGroup;
   submitted = false;
   // loading: Observable<boolean>;
   // notes: Observable<Notes>;
@@ -28,6 +29,7 @@ export class SmartNotesLoadComponent implements OnInit{
     this.validationForm = fb.group({
         titleFormEx: [null, [Validators.required, Validators.email]],
         passwordFormEx: [null, Validators.required],
+        tickets: new FormArray([])
         });
     // this.loading = this.notesDetailService.loading;
     // this.notes = this.notesDetailService.notes;
@@ -46,8 +48,15 @@ export class SmartNotesLoadComponent implements OnInit{
       // this.loading = false;
     this.users = users;
     });
-}
+    let group: any = {};    
+    this.notesModel.forEach(note => {
+      group[note.title] = new FormControl(note.title || '', Validators.required);   
+      group[note.body] = new FormControl(note.body || '', Validators.required);
+      group[note.media] = new FormControl(note.media || '', Validators.required);                                            
+    });
 
+    this.dynamicForm = new FormGroup(group);
+  }
   onSubmit() {
     this.submitted = true;
     // this.submit.emit();

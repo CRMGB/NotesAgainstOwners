@@ -14,7 +14,7 @@ export class AllNotesService {
     return data = [
       {
         id: 1,
-        title: 'noteTitle',
+        title: 'noteTitle1',
         body: 'note body',
         media: '45000',
         status: 'Some Status',
@@ -25,7 +25,7 @@ export class AllNotesService {
       },
       {
         id: 2,
-        title: 'noteTitle',
+        title: 'noteTitle2',
         body: 'note body2',
         media: '45000',
         status: 'Some Status',
@@ -36,7 +36,7 @@ export class AllNotesService {
       },
       {
         id: 3,
-        title: 'noteTitle',
+        title: 'noteTitle3',
         body: 'note body3',
         media: '45000',
         status: 'Some Status',
