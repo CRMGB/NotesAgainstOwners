@@ -1,0 +1,72 @@
+﻿<div class="card mt-4">
+  <h4>You're logged as {{userOwner}}</h4>
+</div>
+<form [formGroup]="formGroup">
+  <div *ngFor="let note of notesInput">
+    <div *ngIf="userOwner===note.owner || userOwner==='admin'">
+      <div class="note">
+        <div class="md-form">
+          <label for="form9">Title</label>
+          <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
+          <input mdbInput mdbValidate [formControlName]="note.title" minLength="8" maxLength="25" type="text"
+            class="form-control" id="form9" [value]="note.title">
+          <mdb-error *ngIf="note.title.invalid && (note.title.dirty || note.title.touched)">Input invalid</mdb-error>
+          <mdb-success *ngIf="note.title.valid && (note.title.dirty || note.title.touched)">Input valid</mdb-success>
+        </div>
+        <div class="md-form">
+          <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+          <label for="form10">body</label>
+          <input mdbInput mdbValidate [formControlName]="note.body" minLength="10" maxLength="25" type="text"
+            class="form-control" id="form10" [value]="note.body">
+          <mdb-error *ngIf="note.body.invalid && (note.body.dirty || note.body.touched)">Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="note.body.valid && (note.body.dirty || note.body.touched)">Input valid
+          </mdb-success>
+        </div>
+        <div class="md-form">
+          <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+          <label for="form10">media</label>
+          <input mdbInput mdbValidate [formControlName]="note.body" minLength="10" maxLength="25" type="text"
+            class="form-control" id="form10" [value]="note.body">
+          <mdb-error *ngIf="note.media.invalid && (note.media.dirty || note.media.touched)">Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="note.media.valid && (note.media.dirty || note.media.touched)">Input valid
+          </mdb-success>
+        </div>
+
+        <div>status: {{note.status}}</div>
+        <div>created: {{note.created}}</div>
+        <div>edited: {{note.edited}}</div>
+        <div>deleted: {{note.deleted}}</div>
+        <div>owner: {{note.owner}}</div>
+      </div>
+      <br>
+    </div>
+  </div>
+  <!-- <button type="button" (click)="onSubmit()" class="btn btn-primary">Save</button>  -->
+</form>
+
+<!--  Place the form here when it works  -->
+<table class="table table-striped" style="border:1px solid black">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>body</th>
+      <th> media </th>
+      <th> status </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let note of notesInput">
+      <td> {{note.title}} </td>
+      <td> {{note.body}} </td>
+      <td> {{note.media}} </td>
+      <td> {{note.status}} </td>
+      <!-- <td> 
+        <button type="button" *ngIf="showAddBUtton" class="btn btn-primary" (click)="addToCart(products);showToastr(products,'  is added to the cart')" > Add </button>
+        <button type="button" *ngIf="showDeleteButton" class="btn btn-primary" (click)="deleteFromCart(products);showToastr(products,' is deleted from the cart')" > Delete </button>
+
+    </td> -->
+    </tr>
+  </tbody>
+</table>
